@@ -1,10 +1,10 @@
-# Ищем максимальное число из заданных
-a = 3
-b = 5
-c = 16
-max = a
-if b>max:
-    max = b
-if c>max:
-    max = c
-print ("max =", max)
+# Ищем максимальное число из заданных. Своё. Цикл for. Массив(список)
+numbers = [4, 8, 12, 4, 7]
+max = numbers[0]
+
+for x in numbers:
+    print(x)
+    if x > max:
+        max = x
+
+print(max)
