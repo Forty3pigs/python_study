@@ -10,15 +10,17 @@ def input_coords(n):
 
 
 def points_distance(pointA, pointB):
-    d = ((pointA[0] + pointB[0])**2 + (pointA[1] + pointB[1])**2)**0.5
+    d = ((pointA[0] - pointB[0])**2 + (pointA[1] - pointB[1])**2)**0.5
     return d
 
 
 try:
     print('enter coordinates for point A: ')
     A = input_coords(2)
+    print(A)
     print('enter coordinates for point B: ')
     B = input_coords(2)
+    print(B)
     distance = round(points_distance(A, B), 3)
     print()
     print(f'distance betwin point A {A} and point B {B} is {distance}')

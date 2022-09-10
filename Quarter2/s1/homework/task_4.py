@@ -16,4 +16,4 @@ def possible_coord_values(quad):
 try:
     print(possible_coord_values(int(input('enter quarter: '))))
 except:
-    print('Nein')
+    print('wrong input')

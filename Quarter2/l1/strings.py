@@ -30,3 +30,15 @@ n = 0
 for i in text:
     print(n, i)
     n += 1
+
+# вывод текста из for в строку, а не в столбик:
+for i in text:
+    print(i, end='  ')
+print()
+
+# выведите 1 цифру после разделительной точки введённого числа:
+number = '4.242'  # имитация ввода
+if '.' in number:
+    print(number[number.index('.')+1])
+else:
+    print('no')
