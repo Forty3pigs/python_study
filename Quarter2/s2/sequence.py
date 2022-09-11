@@ -4,7 +4,23 @@
 #n = int(input('enter N: '))
 n = 5
 p = 1
+
 for i in range(n):
     print(p, end=', ')
     p *= -3
 print()
+
+#n = int(input('enter N: '))
+some_list = []
+
+for i in range(n):
+    some_list.append((-3) ** i)
+
+# вывод распакованного списка (без [ и ]) через сепаратор ", "
+print(*some_list, sep=', ')
+
+# при помощи map переводим каждый элемент списка в str. str здесь является функцией, которая применяется к элементам итерируемого объекта:
+print(', '.join(map(str, some_list)))
+
+# просто str над всем списком даёт ад и израиль:
+print(', '.join(str(some_list)))

@@ -10,7 +10,27 @@ for i in range(1, n):
 print(n, ':', 3 * n + 1)
 
 # словарь
-dict = {}
-for i in range(1, n):
-    dict[i] = 3 * i + 1
-print(dict)
+my_dict = {}
+for i in range(1, n+1):
+    my_dict[i] = 3 * i + 1
+print(my_dict)
+
+# пример работы со словарём:
+translate = {'cat': 'кот', 'dog': 'собака', 'monkey': 'обезьяна'}
+print(translate['cat'])
+translate['cat'] = 'кошка'
+print(translate)
+translate['girafаe'] = 'жираф'
+print(translate)
+
+# более правильно делать с фуункцией:
+
+
+def func(x):
+    return 3*x + 1
+
+
+my_dict = {}
+for i in range(1, n + 1):
+    my_dict[i] = func(i)
+print(my_dict)
