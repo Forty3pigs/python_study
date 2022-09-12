@@ -3,14 +3,16 @@
 # [2, 3, 4, 5, 6] => [12, 15, 16]
 # [2, 3, 5, 6] => [12, 15]
 
-from random import randint
+from random import randint as rnd
 
 
 def create_rand_list(_size, _span):
-    return [randint(-_span, _span) for _ in range(_size)]
+    'список случайных целых чисел размером size в диапазоне от -span до +span'
+    return [rnd(-_span, _span) for i in range(_size)]
 
 
 def multiply_pairs(_list, _size):
+    'перемножает сходящиеся к центру пары начиная с крайних'
     return [_list[i] * (_list[_size - i - 1]) for i in range((_size + 1)//2)]
 
 

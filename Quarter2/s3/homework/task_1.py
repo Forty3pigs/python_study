@@ -1,10 +1,12 @@
 # Задайте список из нескольких чисел. Напишите программу, которая найдёт сумму элементов списка, стоящих на нечётной позиции.
 # [2, 3, 5, 9, 3] -> на нечётных позициях элементы 3 и 9, ответ: 12
-from random import randint
+
+from random import randint as rnd
 
 
 def create_rand_list(_size, _span):
-    return [randint(-_span, _span) for i in range(_size)]
+    'список случайных целых чисел размером size в диапазоне от -span до +span'
+    return [rnd(-_span, _span) for i in range(_size)]
 
 
 def sum_odd_pos(_list, _size):
