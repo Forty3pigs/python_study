@@ -8,12 +8,10 @@ def get_ratio(kf):
     r = [rnd(0, 101) for _ in range(kf)]
     r.insert(0, rnd(1, 101))
     return r
-    return str(r)[1:-1]
-
 
 def form_eq(kf, rat):
     eq = []
-    while kf > 0:
+    while kf >= 0:
         if rat[-kf-1] == 0:
             kf -= 1
             continue
@@ -30,8 +28,8 @@ def form_eq(kf, rat):
                 eq += [str(rat[-kf-1] * x ** kf)]
         kf -= 1
 
-    if rat[-kf] != 0:
-        eq += [str(rat[-kf])]
+    # if rat[-kf] != 0:
+    #     eq += [str(rat[-kf])]
     eq = ' + '.join(eq)
     eq += ' = 0'
 
