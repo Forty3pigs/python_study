@@ -42,6 +42,10 @@ def write_to_file(path, eq):
     with open(path, 'w') as file:
         file.write(eq)
 
+def get_line_from_file(path):
+    with open(path, 'r') as file:
+        return file.readline()
+
 
 def create_eq_file(kf, path):
     _r = get_ratio(kf)
