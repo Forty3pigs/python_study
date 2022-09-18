@@ -1,0 +1,4 @@
+redgreenblue
+NEWLINE 1
+NEWLINE 2
+appended line 1appended line 2
