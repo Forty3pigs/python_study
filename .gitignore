@@ -5,6 +5,7 @@
 .vs
 /tmp
 /.idea
+__pycache__/
 .vscode
 *.suo
 *.user

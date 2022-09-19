@@ -9,6 +9,7 @@ def get_ratio(kf):
     r.insert(0, rnd(1, 101))
     return r
 
+
 def form_eq(kf, rat):
     eq = []
     while kf >= 0:
@@ -28,8 +29,6 @@ def form_eq(kf, rat):
                 eq += [str(rat[-kf-1] * x ** kf)]
         kf -= 1
 
-    # if rat[-kf] != 0:
-    #     eq += [str(rat[-kf])]
     eq = ' + '.join(eq)
     eq += ' = 0'
 
@@ -39,6 +38,7 @@ def form_eq(kf, rat):
 def write_to_file(path, eq):
     with open(path, 'w') as file:
         file.write(eq)
+
 
 def get_line_from_file(path):
     with open(path, 'r') as file:
