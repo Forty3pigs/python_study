@@ -3,13 +3,14 @@ from time import sleep
 import pygame
 
 
-def scaling(img, w, h):
+def scaling(img):
     'Изменение размера картинки под размер окна, если необходимо'
-    if img.get_size() == (w, h):
+    size = screen.get_size()
+    if img.get_size() == size:
         return img
     else:
-        img = pygame.transform.scale(img, (w, h))
-    return img
+        img = pygame.transform.scale(img, size)
+        return img
 
 
 def check_win(mas, sign, cols):
@@ -51,10 +52,11 @@ pygame.display.set_caption('Ultimate Battle XO')
 icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
 splash = pygame.image.load('win2.png')
-splash = scaling(splash, width_window, height_window)
-# splash2 = scaling(pygame.image.load('win2.png'), size_window)
+splash = scaling(splash)
 
 
+print(screen.get_size())
+print(splash.get_size())
 print(size_window)
 print(type(splash))
 
@@ -84,7 +86,7 @@ while True:
                     mas[row][col] = 'o'
                 query += 1
         # Перезапуск Пробелом через обнуление переменных
-        elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE) or (
+        elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and game_over) or (
                 event.type == pygame.MOUSEBUTTONDOWN and game_over):
 
             screen.blit(splash, (0, 0))
