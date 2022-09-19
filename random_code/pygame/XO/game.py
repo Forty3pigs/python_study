@@ -1,13 +1,14 @@
 import sys
+from time import sleep
 import pygame
 
 
-def scaling(img, size):
+def scaling(img, w, h):
     'Изменение размера картинки под размер окна, если необходимо'
-    if img.get_size() == size:
+    if img.get_size() == (w, h):
         return img
     else:
-        img = pygame.transform.scale(img, (width_window, height_window))
+        img = pygame.transform.scale(img, (w, h))
     return img
 
 
@@ -49,8 +50,8 @@ screen = pygame.display.set_mode(size_window)
 pygame.display.set_caption('Ultimate Battle XO')
 icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
-splash = pygame.image.load('win1.png')
-# splash1 = scaling(pygame.image.load('win1.png'), size_window)
+splash = pygame.image.load('win2.png')
+splash = scaling(splash, width_window, height_window)
 # splash2 = scaling(pygame.image.load('win2.png'), size_window)
 
 
@@ -85,7 +86,10 @@ while True:
         # Перезапуск Пробелом через обнуление переменных
         elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE) or (
                 event.type == pygame.MOUSEBUTTONDOWN and game_over):
+
+            screen.blit(splash, (0, 0))
             pygame.display.update()
+            sleep(2)
             screen.fill(BLACK)
             mas = [[0]*COLS for _ in range(ROWS)]
             query = 0
