@@ -39,6 +39,7 @@ def check_win(mas, sign, cols):
 
 
 pygame.init()
+pygame.mixer.init()
 SIZE_BLOCK = 100
 ROWS = 3
 COLS = 3
@@ -53,6 +54,7 @@ icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
 splash = pygame.image.load('win2.png')
 splash = scaling(splash)
+woohoo = pygame.mixer.Sound('woohoo.ogg')
 
 
 print(screen.get_size())
@@ -69,6 +71,7 @@ WINS = (254, 216, 31)
 mas = [[0]*COLS for _ in range(ROWS)]
 query = 0           # 1, 2, 3, 4, 5 , 6, 7 , 8 для проверки очередности хода
 game_over = False
+played = False
 
 
 while True:
@@ -89,10 +92,12 @@ while True:
         # Перезапуск Пробелом через обнуление переменных
         elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and game_over) or (
                 event.type == pygame.MOUSEBUTTONDOWN and game_over):
+
             screen.fill(BLACK)
             mas = [[0]*COLS for _ in range(ROWS)]
             query = 0
             game_over = False
+            played = False
 
     if not game_over:
         for row in range(ROWS):
@@ -126,7 +131,9 @@ while True:
         game_over = check_win(mas, 'o', COLS)
 
     if game_over:
-        # screen.fill(BLACK)
+        if not played:
+            woohoo.play()
+            played = True
         screen.blit(splash, (0, 0))
         font_lc = pygame.font.SysFont('lucidaconsole', 60, bold=True)
         text1 = font_lc.render(game_over, 1, WINS)
