@@ -12,26 +12,21 @@ coded3 = 'bwb5w4b'
 
 def cod(s):
     icount = 1
-    dcount = 1
     output = ''
     l = len(s)
     for i in range(1, l):
         if s[i] == s[i-1]:
             icount += 1
-            if dcount != 1:
-                output += str(-dcount) + s[i-1]
-                dcount = 1
         else:
-            dcount += 1
-            if icount != 1:
+            if icount == 1:
+                output += s[i-1]
+            else:
                 output += str(icount) + s[i-1]
                 icount = 1
-    if icount == 1 and dcount == 1:
+    if icount == 1:
         output += output[-1]
-    elif icount == 1:
-        output += str(icount) + s[-1]
     else:
-        output += str(-dcount) + s[-1]
+        output += str(icount) + s[-1]
     return output
 
 
