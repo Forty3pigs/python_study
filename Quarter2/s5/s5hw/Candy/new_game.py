@@ -21,4 +21,4 @@ while candy > MAX_PICK:
         candy -= hard_bot_turn(candy, player_1[1], MAX_PICK)
     player_1, player_2 = player_2, player_1
 
-print(f'\ncandies remain {candy}\n{player_1[1]} wins!')
+print(f'\nCandies remain {candy}\n{player_1[1]} wins!')

@@ -3,7 +3,7 @@ from random import randint
 
 def turn_choise():
 
-    return int(input('Turn choise:\n1 for fist turn, 2 for second: ')) - 1
+    return int(input('Turn choise:\n1 for first turn, 2 for second: ')) - 1
 
 
 def opp_choise():
@@ -34,26 +34,26 @@ def hard_bot_turn(candy, name, max_pick):
 
 def initiation(player_1, player_2):
     tc = turn_choise()
-    if tc == 0:        
+    if tc == 0:
         op = opp_choise()
-        if op == 1:            
+        if op == 1:
             player_2[1] = input('Enter other player name: ')
-        elif op == 2:            
+        elif op == 2:
             df = dif_choise()
-            if df == 2:                
-                player_2 = [df, 'Easy Bot']                
-            else:              
-                player_2 = [df, 'Hard Bot']                
-    else:        
+            if df == 2:
+                player_2 = [df, 'Easy Bot']
+            else:
+                player_2 = [df, 'Hard Bot']
+    else:
         player_1, player_2 = player_2, player_1
         op = opp_choise()
-        if op == 1:            
+        if op == 1:
             player_1[1] = input('Enter other player name: ')
         else:
             df = dif_choise()
-            if df == 2:                
-                player_1 = [df, 'Easy Bot']                
-            else:                
-                player_1 = [df, 'Hard Bot']    
+            if df == 2:
+                player_1 = [df, 'Easy Bot']
+            else:
+                player_1 = [df, 'Hard Bot']
 
     return player_1, player_2
