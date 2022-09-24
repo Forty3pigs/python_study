@@ -40,7 +40,7 @@ def check_in(key):
 
 
 def results():
-    global data, comands    
+    global data, comands
     for match in data:
         match = match.strip().split(';')
         goals_1 = int(match[1])
@@ -78,5 +78,5 @@ LOS = np.array([1, 0, 0, 1, 0])
 
 
 results()
-print(comands)
+# print(comands)
 dict_print(comands)
