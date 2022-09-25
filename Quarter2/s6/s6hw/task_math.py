@@ -40,6 +40,7 @@ def find_n_solve(op, lst):
         if lst[i] == op:
             num1 = lst[i-1]
             num2 = lst[i+1]
+            # здесь try для случая (op = '/', num = 0)
             res = OPERATORS[op](num1, num2)
             lst = lst[:i-1] + [res] + nums[i+2:]
             return lst
@@ -51,6 +52,7 @@ print(task)
 print(nums)
 
 for ops in OPERATORS:
+    # тут можно просто чекнуть длину  nums > 1
     while find_n_solve(ops, nums):
         nums = find_n_solve(ops, nums)
 
