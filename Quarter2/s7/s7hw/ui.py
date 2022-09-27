@@ -1,8 +1,10 @@
-import rw_base
+import txt_csv
 
+KEYS = ['Last name', 'Name', 'Phone']
 
 messages = {
     'error': 'error',
+    'file_error': 'file error text',
     'intro': 'intro text',
     'help': 'help text',
     'input au': 'input1 text',
