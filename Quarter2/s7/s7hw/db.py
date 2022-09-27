@@ -44,10 +44,10 @@ def write_db(data):
     temp_db.close()
 
 
-def read_db(query='*'):
+def read_db(query='"SELECT * FROM Users"'):
     temp_db = db.connect(db_path)
     temp_db.row_factory = db.Row
-    values = temp_db.execute("SELECT " + query + "FROM Users").fetchall()
+    values = temp_db.execute(query).fetchall()
 
     list_accumulator = []
 
