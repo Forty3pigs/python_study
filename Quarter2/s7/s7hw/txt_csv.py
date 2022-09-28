@@ -1,6 +1,6 @@
 from keys import KEYS
 import csv
-import sqlite3 as db
+import os.path
 
 
 def get_extension(path):
@@ -11,8 +11,14 @@ def get_extension(path):
         return False
 
 
+def check_file(path):
+    return os.path.exists(path)
+
+
 def read_file(path='./data/data.txt'):
     'получает путь, возвращает data'
+    if not check_file(path):
+        return 'no such file'
     if get_extension(path):
         extension = get_extension(path)
 
@@ -30,7 +36,7 @@ def read_file(path='./data/data.txt'):
             return data
 
     elif extension == 'csv':
-        with open(path) as f:
+        with open(path, 'r', encoding='UTF-8') as f:
             reader = csv.DictReader(f)
             data = []
             for row in reader:
@@ -38,10 +44,28 @@ def read_file(path='./data/data.txt'):
         return data
 
 
-# def write_file(path = 'output.txt', data):
-#     extension = get_extension(path)
-#     if extension == 'txt':
-#     elif extension == 'csv':
+def write_file(data, path='output.txt'):
+    # if not check_file(path):
+    #     return 'no such file'
+
+    extension = get_extension(path)
+    if extension == 'txt':
+        f = open(path, 'w', encoding='UTF-8')
+        temp = ''
+        # f.write('test\n')
+        for lines in data:
+            for element in lines:
+                temp += str(lines[element]) + ' '
+            temp = temp[:-1] + '\n'
+        f.write(temp[:-1])
+        f.close()
+
+    elif extension == 'csv':
+        with open(path, 'w', encoding='UTF-8') as f:
+            writer = csv.DictWriter(f, fieldnames=list(data[0].keys()), quoting=csv.QUOTE_NONNUMERIC)
+            writer.writeheader()
+            for d in data:
+                writer.writerow(d)
 
 
 # path1 = '.\data\data.txt'
@@ -49,3 +73,7 @@ def read_file(path='./data/data.txt'):
 
 # print(read_file(path1))
 # print(read_file(path2))
+
+
+# data = read_file()
+# write_db(data)

@@ -1,7 +1,6 @@
 import sqlite3 as db
-from keys import db_path
+from keys import db_path, KEYS
 import os.path
-import txt_csv
 
 
 def check_db():
@@ -24,10 +23,10 @@ def create_db():
         print('DB already exist')
 
 
-
-
 def write_db(data):
     # сюда можно прикрутить KEYS
+    if not check_db():
+        create_db()
     temp_db = db.connect(db_path)
 
     for item in data:
@@ -44,19 +43,20 @@ def write_db(data):
     temp_db.close()
 
 
-def read_db(query='"SELECT * FROM Users"'):
+def read_db(query='SELECT * FROM users'):
+    if not check_db():
+        create_db()
     temp_db = db.connect(db_path)
     temp_db.row_factory = db.Row
     values = temp_db.execute(query).fetchall()
 
-    list_accumulator = []
+    data = []
 
     for item in values:
-        list_accumulator.append({k: item[k] for k in item.keys()})
-    print(list_accumulator)
+        data.append({k: item[k] for k in item.keys()})
     temp_db.close()
 
-    return list_accumulator
+    return data
 
 
 def drop_db():
@@ -66,7 +66,24 @@ def drop_db():
     temp_db.close()
 
 
-create_db()
-data = txt_csv.read_file()
-write_db(data)
+def only_new(data):
+    'проверка на уникальность входных данных'
+    already_exist = read_db()
+    if already_exist:
+        data = [element for element in data if element not in already_exist]
+    return data
 
+
+def print_cleaner(data):
+    'очистка вывода данных'
+    for dict in data:
+        result = ''
+        for i in range(len(dict)):
+            result += f'{KEYS[i]} {dict[KEYS[i]]}; '
+        # походу это проверяет, что последний в output является текущим и последним dict
+        if data[-1] == dict:
+            # чтобы отрезать последнюю точку с запятой в последней строке вывода
+            print(result[:-2])
+        else:
+            print(result[:-1])
+    print()
